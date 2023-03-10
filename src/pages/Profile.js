@@ -15,6 +15,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) navigate("/");
     const getDb = async () => {
       const docRef = doc(db, "users", user?.uid);
       try {
