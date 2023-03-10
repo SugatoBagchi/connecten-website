@@ -3,7 +3,7 @@ import qr from "../assets/qr.png";
 
 const QRGenerator = () => {
   return (
-    <div className="bg-gray-900 text-white text-center py-4">
+    <div id="qr" className="bg-gray-900 text-white text-center py-4">
       <p className="text-5xl font-bold">Get The App!</p>
       <div className="bg-gray-900 flex text-white items-center py-8 justify-around">
         <div>

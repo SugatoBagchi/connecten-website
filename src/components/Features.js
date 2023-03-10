@@ -2,7 +2,7 @@ import React from "react";
 
 const Features = () => {
   return (
-    <div className="py-12">
+    <div id="features" className="py-12">
       <p className="text-5xl text-center font-bold">Features</p>
       <div class="bg-dotted-spacing-[22px] bg-dotted-gray-300 py-20 text-center">
         <p className="text-xl text-blue-500">Connect faster</p>
