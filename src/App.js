@@ -5,6 +5,8 @@ import { UserAuthProvider } from "./context/UserAuthContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile.js";
 
+import Home from "./components/Home.js";
+
 const App = () => {
   return (
     <UserAuthProvider>
@@ -12,6 +14,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           {/* <Route path="/login" element={<Login />} /> */}
+
+          <Route path="/home" element={<Home />} />
           <Route path="/buy" element={<BuyCoins />} />
           <Route path="/id" element={<Profile />} />
         </Routes>
