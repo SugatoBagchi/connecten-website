@@ -2,17 +2,14 @@ import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import React from "react";
 import abi from "../constants/abi.json";
+import { doc, getFirestore, updateDoc } from "firebase/firestore";
 
 const BuyCoins = () => {
   const [user, setUser] = useState("");
   const [price, setPrice] = useState(0);
   const [greeting, setGreeting] = useState("Connect");
   const contractAddress = "0x027fc52f721E932B1B480D3C728ca83e24975857";
-
-  // useEffect(() => {
-  //   if(user)
-
-  // }, [third])
+  const db = getFirestore();
 
   const provider = new ethers.BrowserProvider(window.ethereum);
   const handleConnect = async () => {
@@ -23,7 +20,6 @@ const BuyCoins = () => {
   };
 
   const handleAccChange = async () => {
-    // console.log(user);
     const accounts = await provider.send("eth_requestAccounts", []);
     setUser(accounts[0]);
   };
@@ -59,19 +55,8 @@ const BuyCoins = () => {
       if (price > 0) setPrice(price - 1);
     } else setPrice(price + 1);
   };
-
-  // useEffect(() => {
-  //   window.ethereum.on("accountsChanged", handleAccChange);
-  //   return () => {
-  //     window.ethereum.removeListener("accountsChanged", handleAccChange);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   useEffect(() => {
     if (user) setGreeting("Buy");
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

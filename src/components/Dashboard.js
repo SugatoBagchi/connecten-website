@@ -36,7 +36,7 @@ const Dashboard = () => {
             </a>
           </div>
           <div class=" lg:mt-0 lg:col-span-5 lg:flex h-[600px]">
-            <img className="rounded-md pl-32" src={appImg} alt="app" />
+            <img className="rounded-md ml-32" src={appImg} alt="app" />
           </div>
         </div>
       </section>

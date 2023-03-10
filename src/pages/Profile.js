@@ -15,7 +15,6 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) navigate("/");
     const getDb = async () => {
       const docRef = doc(db, "users", user?.uid);
       try {
@@ -28,7 +27,7 @@ const Profile = () => {
     getDb();
   }, [user]);
 
-  // console.log(dbData);
+  console.log(user);
 
   return (
     <div className="font-roboto  ">
