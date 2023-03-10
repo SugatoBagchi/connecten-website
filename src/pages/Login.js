@@ -34,6 +34,7 @@ const Login = () => {
     }
   };
   console.log(authState);
+  console.log(user?.uid);
   return (
     <div className="flex justify-center w-full h-full">
       {authState ? (

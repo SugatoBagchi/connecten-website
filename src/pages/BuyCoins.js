@@ -6,9 +6,13 @@ import abi from "../constants/abi.json";
 const BuyCoins = () => {
   const [user, setUser] = useState("");
   const [price, setPrice] = useState(0);
-  const [greeting, setGreeting] = useState("Buy");
-  const [finalPrice, setFinalPrice] = useState(0);
+  const [greeting, setGreeting] = useState("Connect");
   const contractAddress = "0x027fc52f721E932B1B480D3C728ca83e24975857";
+
+  // useEffect(() => {
+  //   if(user)
+
+  // }, [third])
 
   const provider = new ethers.BrowserProvider(window.ethereum);
   const handleConnect = async () => {
@@ -19,16 +23,24 @@ const BuyCoins = () => {
   };
 
   const handleAccChange = async () => {
+    // console.log(user);
     const accounts = await provider.send("eth_requestAccounts", []);
     setUser(accounts[0]);
   };
 
   const handleBuy = async () => {
-    try {
-      setFinalPrice(price);
+    if (!user) {
+      setGreeting("Connecting");
+      if (window.ethereum) {
+        const accounts = await provider.send("eth_requestAccounts", []);
+        setUser(accounts[0]);
+      }
+      setGreeting("Buy");
+    } else {
       setGreeting("Loading");
       const signer = await provider.getSigner();
-
+      console.log(signer);
+      const contract = new ethers.Contract(contractAddress, abi, signer);
       let _price = price.toString();
 
       const tx = await signer.sendTransaction({
@@ -36,11 +48,9 @@ const BuyCoins = () => {
         value: ethers.parseEther(_price),
       });
       setGreeting("Processing");
+      let receipt = await tx.wait();
       setGreeting("Buy");
-      console.log("Transaction Complete");
-    } catch (error) {
-      setGreeting("Buy");
-      console.log(error);
+      console.log("Transaction Complete", receipt);
     }
   };
 
@@ -50,17 +60,23 @@ const BuyCoins = () => {
     } else setPrice(price + 1);
   };
 
+  // useEffect(() => {
+  //   window.ethereum.on("accountsChanged", handleAccChange);
+  //   return () => {
+  //     window.ethereum.removeListener("accountsChanged", handleAccChange);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   useEffect(() => {
-    window.ethereum.on("accountsChanged", handleAccChange);
-    return () => {
-      window.ethereum.removeListener("accountsChanged", handleAccChange);
-    };
+    if (user) setGreeting("Buy");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
-      <div className=" text-center">
+    <div className="flex flex-col justify-center">
+      <div className="text-center">
         {!user ? (
           <button className="addr" onClick={handleConnect}>
             Connect
@@ -83,7 +99,6 @@ const BuyCoins = () => {
           type="number"
           className="w-[40%] m-auto outline-none bg-inherit text-center"
           value={price}
-          readOnly
         />
         <button
           className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
