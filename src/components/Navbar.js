@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Navbar = () => {
+  const { signIn, signInWithGoogle, signOutUser } = useUserAuth();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const { user, authState } = useUserAuth();
 
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signInWithGoogle();
+      console.log(user);
+      //   navigate("/");
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const handleGoogleSignOut = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signOutUser();
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    }
+  };
+
+  console.log(user);
   return (
     <div className="text-white text-xl ">
       <div className="flex justify-between py-4 items-center bg-gray-900">
@@ -38,11 +68,11 @@ const Navbar = () => {
           </p>
         </div>
         <button
-          class="relative mr-32 inline-flex items-center justify-center p-0.5 mb-2  overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-          onClick={() => navigate("/Login")}
+          class="relative mr-32 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+          onClick={!user ? handleGoogleSignIn : handleGoogleSignOut}
         >
           <span class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Login
+            {!user ? `Login with Google` : `Sign Out`}
           </span>
         </button>
       </div>

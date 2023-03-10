@@ -12,11 +12,7 @@ const App = () => {
     <UserAuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Login" element={<Login />} />
-          {/* <Route path="/login" element={<Login />} /> */}
-
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/buy" element={<BuyCoins />} />
           <Route path="/id" element={<Profile />} />
 

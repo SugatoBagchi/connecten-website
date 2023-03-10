@@ -6,7 +6,7 @@ import { doc, getDoc, updateDoc, getFirestore } from "@firebase/firestore";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, signInWithGoogle, signOutUser } = useUserAuth();
+  const { signInWithGoogle, signOutUser } = useUserAuth();
   const [dbData, setDbData] = useState({});
   const { user, authState } = useUserAuth();
 
