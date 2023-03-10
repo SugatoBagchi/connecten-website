@@ -5,6 +5,7 @@ import { BsLinkedin, BsTwitter, BsGithub, BsCashStack } from "react-icons/bs";
 import coin from "../assets/coin.png";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useUserAuth } from "../context/UserAuthContext";
+import Connection from "../components/Connection";
 
 const Profile = () => {
   const profileJSON = {
@@ -45,22 +46,22 @@ const Profile = () => {
   // console.log(dbData);
 
   return (
-    <div className="font-roboto pt-24 pb-8 bg-[#EFF5F5]">
-      <div className="flex justify-between items-center">
+    <div className="font-roboto  ">
+      <div className="flex justify-between items-center bg-[#EFF5F5] pt-24 pb-8">
         <div className="px-8">
-          <p className=" text-5xl font-bold">{dbData.name}</p>
+          <p className=" text-5xl font-bold">{profileJSON.name}</p>
           <div className="flex justify-evenly items-center gap-6 text-gray-500">
             <div className="flex items-center gap-2 text-xl">
               <FaSuitcase />
-              {dbData.designation}
+              {profileJSON.designation}
             </div>
             <div className="flex items-center gap-2 text-xl">
               <MdEmail />
-              {dbData.email}
+              {profileJSON.email}
             </div>
             <div className="flex items-center gap-2 text-xl">
               <img className="w-8 bg-gray-500 rounded-full" src={coin} alt="" />
-              {dbData.coins}
+              {profileJSON.coins}
             </div>
           </div>
         </div>
@@ -82,9 +83,16 @@ const Profile = () => {
           </div>
           <div className="text-white px-2 cursor-pointer flex items-center text-2xl border-2 bg-[#609966] justify-center rounded-md">
             <BsCashStack />
-            <button className="px-2" >Buy</button>
+            <button className="px-2">Buy</button>
           </div>
         </div>
+      </div>
+
+      {/* Connected ppl */}
+      <div className="flex flex-col py-10 px-8 ">
+        {profileJSON.connectedList.map((connect) => {
+          return <Connection key={connect} id={connect} />;
+        })}
       </div>
     </div>
   );
