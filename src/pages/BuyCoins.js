@@ -5,9 +5,9 @@ import abi from "../constants/abi.json";
 
 const BuyCoins = () => {
   const [user, setUser] = useState("");
-  const [isOwner, setIsOwner] = useState("");
   const [price, setPrice] = useState(0);
   const [greeting, setGreeting] = useState("Buy");
+  const [finalPrice, setFinalPrice] = useState(0);
   const contractAddress = "0x027fc52f721E932B1B480D3C728ca83e24975857";
 
   const provider = new ethers.BrowserProvider(window.ethereum);
@@ -15,37 +15,33 @@ const BuyCoins = () => {
     if (window.ethereum) {
       const accounts = await provider.send("eth_requestAccounts", []);
       setUser(accounts[0]);
-      // checkIsOwner();
     }
   };
 
   const handleAccChange = async () => {
-    // console.log(user);
     const accounts = await provider.send("eth_requestAccounts", []);
     setUser(accounts[0]);
-    checkIsOwner();
-  };
-
-  const checkIsOwner = () => {
-    if (user === "0x83f5ebac3c2806ef448946c19a371076b6a6d0ca") setIsOwner(true);
-    else setIsOwner(false);
   };
 
   const handleBuy = async () => {
-    setGreeting("Loading");
-    const signer = await provider.getSigner();
-    console.log(signer);
-    const contract = new ethers.Contract(contractAddress, abi, signer);
-    let _price = price.toString();
+    try {
+      setFinalPrice(price);
+      setGreeting("Loading");
+      const signer = await provider.getSigner();
 
-    const tx = await signer.sendTransaction({
-      to: "0x83f5ebac3c2806ef448946c19a371076b6a6d0ca",
-      value: ethers.parseEther(_price),
-    });
-    setGreeting("Processing");
-    let receipt = await tx.wait();
-    setGreeting("Buy");
-    console.log("Transaction Complete", receipt);
+      let _price = price.toString();
+
+      const tx = await signer.sendTransaction({
+        to: "0x83f5ebac3c2806ef448946c19a371076b6a6d0ca",
+        value: ethers.parseEther(_price),
+      });
+      setGreeting("Processing");
+      setGreeting("Buy");
+      console.log("Transaction Complete");
+    } catch (error) {
+      setGreeting("Buy");
+      console.log(error);
+    }
   };
 
   const changePrice = (operation) => {
@@ -61,12 +57,6 @@ const BuyCoins = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    checkIsOwner();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
 
   return (
     <div>
@@ -93,6 +83,7 @@ const BuyCoins = () => {
           type="number"
           className="w-[40%] m-auto outline-none bg-inherit text-center"
           value={price}
+          readOnly
         />
         <button
           className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
