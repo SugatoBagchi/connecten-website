@@ -1,49 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../configs/firebase-config";
-import { doc, getDoc, updateDoc, getFirestore } from "@firebase/firestore";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signInWithGoogle, signOutUser } = useUserAuth();
-  const [dbData, setDbData] = useState({});
+  const { signIn, signInWithGoogle, signOutUser } = useUserAuth();
   const { user, authState } = useUserAuth();
-
-  const db = getFirestore();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getDb();
-  }, [user]);
-
-  const getDb = async () => {
-    const docRef = doc(db, "users", user?.uid);
-    try {
-      const docSnap = await getDoc(docRef);
-      setDbData(docSnap.data());
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleCoins = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      const docRef = doc(db, "users", user?.uid);
-      try {
-        await updateDoc(docRef, {
-          coins: dbData?.coins + 500,
-        });
-        getDb();
-      } catch (error) {
-        console.log(error);
-      }
-    } catch (err) {
-      console.log(err);
-      setError(err.message);
-    }
-  };
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
@@ -70,17 +34,13 @@ const Login = () => {
     }
   };
   console.log(authState);
-  console.log(dbData?.coins);
+  console.log(user?.uid);
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
-      <button className="mb-20 bg-blue-300 w-20 h-20" onClick={handleCoins}>
-        increase coins by 500
-      </button>
-      {dbData?.coins}
+    <div className="flex justify-center w-full h-full">
       {authState ? (
         <a
           onClick={handleGoogleSignOut}
-          className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50 mt-50"
+          className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
         >
           <span className="sr-only">Sign in with Google</span>
           <svg
@@ -94,7 +54,7 @@ const Login = () => {
           </svg>
         </a>
       ) : (
-        <div className="w-20 h-full mt-50">
+        <div className="w-20 h-full">
           <a
             onClick={handleGoogleSignIn}
             className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
