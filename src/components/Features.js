@@ -5,9 +5,10 @@ import { MdOutlineNetworkCheck, MdSecurity } from "react-icons/md";
 const Features = () => {
   return (
     <div id="features" className="py-12">
-      <p className="text-5xl text-center font-bold">Features</p>
-      <div class="bg-dotted-spacing-[22px] bg-dotted-gray-300 py-20 text-center">
-        <p className="text-xl text-blue-500">Connect faster</p>
+      <p className="text-5xl text-center font-bold underline decoration-blue-500 ">
+        Features
+      </p>
+      <div class="bg-dotted-spacing-[22px] bg-dotted-gray-300 py-10 text-center">
         <p className="text-4xl font-bold mb-8">
           One stop solution to connect with your peers
         </p>

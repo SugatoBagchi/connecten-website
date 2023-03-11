@@ -11,7 +11,7 @@ const BuyCoins = () => {
   const [finalPrice, setFinalPrice] = useState(0);
   const [error, setError] = useState("");
   const [dbData, setDbData] = useState({});
-  const [greeting, setGreeting] = useState("Connect");
+  const [greeting, setGreeting] = useState("Connect Wallet");
   const { user, authState } = useUserAuth();
   const contractAddress = "0x027fc52f721E932B1B480D3C728ca83e24975857";
   const db = getFirestore();
@@ -106,16 +106,21 @@ const BuyCoins = () => {
 
   return (
     <div className="bg-gray-900 bg-dotted-spacing-[40px] bg-dotted-gray-500 text-white py-10">
-      <p className="text-5xl font-bold text-center py-10">Pricing</p>
+      <p className="text-5xl font-bold text-center py-10 ">
+        Buy ConnecTen Burst Tokens
+      </p>
       <div className="text-center m-auto w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="mb-4 text-3xl font-black text-white uppercase">
+        {/* <h5 className="mb-4 text-3xl font-black text-white uppercase">
           Burst Tokens
-        </h5>
+        </h5> */}
 
-        <div className="flex items-baseline text-gray-900 dark:text-white">
-          <span className="text-5xl font-bold  tracking-tight">1 5ire</span>
-          <span className="ml-1 text-xl font-normal text-gray-400 dark:text-gray-400">
-            =500 burst tokens
+        <div className="flex flex-col  justify-center items-center text-gray-900 dark:text-white">
+          <span className="text-5xl font-bold tracking-tight">1 5ire</span>
+          <span className="ml-1 text-2xl font-normal text-gray-700 dark:text-gray-400">
+            =
+          </span>
+          <span className="ml-1 text-xl font-normal text-white">
+            500 burst tokens
           </span>
         </div>
 

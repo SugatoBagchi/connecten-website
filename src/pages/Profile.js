@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaSuitcase } from "react-icons/fa";
 import { MdEmail, MdEdit } from "react-icons/md";
-import { BsLinkedin, BsTwitter, BsGithub, BsCashStack } from "react-icons/bs";
 import coin from "../assets/coin.png";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -54,21 +53,6 @@ const Profile = () => {
           </div>
         </div>
         <div className="px-12">
-          {/* <div className="flex text-3xl gap-6 pb-8 text-[#62CDFF]">
-            <a href="">
-              <BsLinkedin />
-            </a>
-            <a href="">
-              <BsTwitter />
-            </a>
-            <a href="">
-              <BsGithub />
-            </a>
-          </div> */}
-          {/* <div className="text-white px-2 cursor-pointer flex items-center text-2xl border-2 bg-[#ff567DF4] justify-center rounded-md">
-            <MdEdit />
-            <button className="px-2">Edit</button>
-          </div> */}
           <button className="relative mr-5 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
             <span
               class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
@@ -80,8 +64,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Connected ppl */}
-      {}
 
       <div className="flex flex-col py-10 px-8 ">
         <div className="justify-center items-center flex">
