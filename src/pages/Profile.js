@@ -49,7 +49,7 @@ const Profile = () => {
                 src={coin}
                 alt=""
               />{" "}
-              <p className="text-4xl">{dbData.coins} coins</p>
+              <p className="text-4xl">{dbData.coins}</p>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ const Profile = () => {
 
       <div className="flex flex-col py-10 px-8 ">
         <div className="justify-center items-center flex">
-          <p className=" text-5xl font-bold mb-10">Connecten</p>
+          <p className=" text-5xl font-bold mb-10">Your ConnecTen</p>
         </div>
         {dbData.connectedList?.map((connect) => {
           return <Connection key={connect} id={connect} />;
