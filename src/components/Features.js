@@ -1,4 +1,6 @@
 import React from "react";
+import { FaUserFriends } from "react-icons/fa";
+import { MdOutlineNetworkCheck, MdSecurity } from "react-icons/md";
 
 const Features = () => {
   return (
@@ -6,40 +8,38 @@ const Features = () => {
       <p className="text-5xl text-center font-bold">Features</p>
       <div class="bg-dotted-spacing-[22px] bg-dotted-gray-300 py-20 text-center">
         <p className="text-xl text-blue-500">Connect faster</p>
-        <p className="text-3xl font-bold mb-8">
-          Everything you need to Connect with your peers
-        </p>
-        <p className="text-xl w-[60%] m-auto">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-          eos facere quidem.
+        <p className="text-4xl font-bold mb-8">
+          One stop solution to connect with your peers
         </p>
 
-        <div className="flex gap-4 pt-8 justify-start">
-          <div className="px-12">
-            <p className="text-blue-500 font-bold text-xl text-left pb-4">
-              Lorem ipsum dolor sit amet.
+        <div className="flex gap-4 pt-8 justify-center">
+          <div className="px-24   ">
+            <p className="text-blue-500 font-bold  text-3xl  pb-4">
+              <FaUserFriends className="inline mx-2" />
+              Peer-2-Peer
             </p>
-            <p className=" text-left ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-              similique sed. Necessitatibus accusamus quos maiores!
-            </p>
-          </div>
-          <div className="px-12">
-            <p className="text-blue-500 font-bold text-xl text-left pb-4">
-              Lorem ipsum dolor sit amet.
-            </p>
-            <p className=" text-left  ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-              similique sed. Necessitatibus accusamus quos maiores!
+            <p className="  text-xl">
+              Each user in the network is both a client as well as a server.
             </p>
           </div>
-          <div className="px-12">
-            <p className="text-blue-500 font-bold text-xl text-left pb-4">
-              Lorem ipsum dolor sit amet.
+          <div className="px-24 ">
+            <p className="text-blue-500 font-bold text-3xl  pb-4">
+              <MdOutlineNetworkCheck className="inline mx-2" />
+              Low Latency
             </p>
-            <p className=" text-left">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-              similique sed. Necessitatibus accusamus quos maiores!
+            <p className="   text-xl  mx-2">
+              Due to its low network usage, ConnecTen provides real time
+              iteraction and instant responses
+            </p>
+          </div>
+          <div className="px-24 ">
+            <p className="text-blue-500 font-bold text-3xl  pb-4">
+              <MdSecurity className="inline" />
+              Highly Secured
+            </p>
+            <p className="  text-xl mx-2 ">
+              ConnecTen ensures security of your data. You control who can and
+              cannot view your data
             </p>
           </div>
         </div>

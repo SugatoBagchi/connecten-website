@@ -61,9 +61,9 @@ const BuyCoins = () => {
         });
         setGreeting("Processing");
         let receipt = await tx.wait();
+        handleCoins();
         setGreeting("Buy");
         console.log("Transaction Complete", receipt);
-        handleCoins();
       } catch (error) {
         console.log(error);
         setGreeting("Buy");
@@ -105,84 +105,56 @@ const BuyCoins = () => {
   }, [user]);
 
   return (
-    // <div className="flex flex-col justify-center">
-    //   <div className="text-center">
-    //     {!muser ? (
-    //       <div className="addr">{muser}</div>
-    //     ) : (
-    //       <div className="addr">
-    //         {muser.substring(0, 4) + "..." + muser.substring(38)}
-    //       </div>
-    //     )}
-    //   </div>
+    <div className="bg-gray-900 bg-dotted-spacing-[40px] bg-dotted-gray-500 text-white py-10">
+      <p className="text-5xl font-bold text-center py-10">Pricing</p>
+      <div className="text-center m-auto w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <h5 className="mb-4 text-3xl font-black text-white uppercase">
+          Burst Tokens
+        </h5>
 
-    //   <div className="w-[30%] m-auto flex rounded-sm justify-between items-center bg-gray-300">
-    //     <button
-    //       className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
-    //       onClick={() => changePrice(false)}
-    //     >
-    //       -
-    //     </button>
-    //     <input
-    //       type="number"
-    //       className="w-[40%] m-auto outline-none bg-inherit text-center"
-    //       value={price}
-    //     />
-    //     <button
-    //       className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
-    //       onClick={() => changePrice(true)}
-    //     >
-    //       +
-    //     </button>
-    //   </div>
-    //   <button
-    //     className="px-32 bg-red-400 text-2xl font-extrabold"
-    //     onClick={handleBuy}
-    //   >
-    //     {greeting}
-    //   </button>
-    // </div>
-
-    <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
-        Standard plan
-      </h5>
-      <div class="flex items-baseline text-gray-900 dark:text-white">
-        <span class="text-3xl font-semibold">$</span>
-        <span class="text-5xl font-extrabold tracking-tight">49</span>
-        <span class="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">
-          /month
-        </span>
-      </div>
-      {/* <!-- List --> */}
-      <ul role="list" class="space-y-5 my-7">
-        <li class="flex space-x-3">
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 w-5 h-5 text-blue-600 dark:text-blue-500"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Check icon</title>
-            <path
-              fill-rule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-            2 team members
+        <div className="flex items-baseline text-gray-900 dark:text-white">
+          <span className="text-5xl font-bold  tracking-tight">1 5ire</span>
+          <span className="ml-1 text-xl font-normal text-gray-400 dark:text-gray-400">
+            =500 burst tokens
           </span>
-        </li>
-      </ul>
-      <button
-        type="button"
-        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-        onClick={handleBuy}
-      >
-        Choose plan
-      </button>
+        </div>
+
+        <div className="w-[40%] mt-12 m-auto flex  justify-evenly items-center mb-12 py-1 border-2 border-white rounded-sm">
+          <button
+            className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
+            onClick={() => changePrice(false)}
+          >
+            -
+          </button>
+          <input
+            type="number"
+            className="w-[40%] scrolling  m-auto outline-none bg-inherit text-center"
+            value={price}
+          />
+          <button
+            className="hover:bg-gray-500 px-2 text-xl rounded-sm text-center font-bold"
+            onClick={() => changePrice(true)}
+          >
+            +
+          </button>
+        </div>
+        <div className="text-center pb-4">
+          {!muser ? (
+            <div className="addr">{muser}</div>
+          ) : (
+            <div className="addr text-2xl">
+              {muser.substring(0, 4) + "..." + muser.substring(38)}
+            </div>
+          )}
+        </div>
+        <button
+          className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-lg px-4 py-2 inline-flex justify-center w-full text-center"
+          onClick={handleBuy}
+        >
+          {greeting}
+        </button>
+        {/* <button onClick={handleCoins}>change</button> */}
+      </div>
     </div>
   );
 };
