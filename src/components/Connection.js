@@ -23,22 +23,24 @@ const Connection = ({ id }) => {
   }, [id]);
   
   return (
-    <div className="flex justify-start items-center rounded-sm border-t-2 mb-4 gap-6 p-4">
+    <div className="flex justify-between items-between rounded-sm border-t-2 mb-4 gap-6 p-4">
       <img
         className="rounded-full w-[70px] h-[70px]"
         src={dbData.imageUrl}
         alt=""
       />
-      <div className="flex flex-col">
-        <p className="text-2xl font-bold text-[#E7AB9A]">{dbData.name}</p>
-        <div className="flex items-center gap-2">
-          <MdEmail />
-          {dbData.email}
+      <div className="flex flex-row justify-around w-full">
+        <div className="flex flex-col ">
+          <p className="text-2xl font-bold text-[#E7AB9A]">{dbData.name}</p>
+          <div className="flex items-center gap-2">
+            <MdEmail />
+            {dbData.email}
+          </div>
         </div>
-      </div>
-      <div className="flex items-center gap-2 text-xl text-black pl-12">
-        <FaSuitcase />
-        <p className="">{dbData.designation}</p>
+        <div className="flex w-[10vw] items-center justify-start gap-4 text-xl text-white ">
+          <FaSuitcase />
+          <p className="">{dbData.designation}</p>
+        </div>
       </div>
     </div>
   );

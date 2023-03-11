@@ -1,5 +1,4 @@
 import React from "react";
-import Login from "./pages/Login.js";
 import BuyCoins from "./pages/BuyCoins.js";
 import { UserAuthProvider } from "./context/UserAuthContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -15,7 +14,6 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/buy" element={<BuyCoins />} />
           <Route path="/id" element={<Profile />} />
-
         </Routes>
       </BrowserRouter>
     </UserAuthProvider>

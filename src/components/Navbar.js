@@ -67,14 +67,26 @@ const Navbar = () => {
             <a href="#qr">Download</a>
           </p>
         </div>
-        <button
-          class="relative mr-32 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-          onClick={!user ? handleGoogleSignIn : handleGoogleSignOut}
-        >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            {!user ? `Login with Google` : `Sign Out`}
-          </span>
-        </button>
+        <div className="flex flex-row justify-between">
+          {(user && !window.location.href.includes("id") )? (
+            <button className="relative mr-5 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+              <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                onClick={() => navigate("/id")}
+              >
+                Profile
+              </span>
+            </button>
+          ) : null}
+          <button
+            className="relative mr-20 inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+            onClick={!user ? handleGoogleSignIn : handleGoogleSignOut}
+          >
+            <span class="relative px-5 py-2.5 transition-all ease-in duration-75  dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              {!user ? `Login with Google` : `Sign Out`}
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
